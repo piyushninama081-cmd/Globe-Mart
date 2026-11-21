@@ -1,0 +1,602 @@
+/* ==========================================================================
+   SHOPSPHERE — STICKY, DYNAMIC & RESPONSIVE GLASSMORPHIC NAVBAR
+   ========================================================================== */
+
+:root {
+    --nav-navy-dark: #070d1d;
+    --nav-navy: #0f172a;
+    --nav-royal: #2563eb;
+    --nav-royal-bright: #3b82f6;
+    --nav-purple: #7c3aed;
+    --nav-border: rgba(255, 255, 255, 0.14);
+    --nav-ease: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.shopsphere-navbar {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    width: 100%;
+    box-sizing: border-box;
+    background: linear-gradient(95deg,
+            rgba(7, 13, 29, 0.94) 0%,
+            rgba(15, 23, 42, 0.92) 52%,
+            rgba(23, 37, 84, 0.94) 100%);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--nav-border);
+    box-shadow: 0 6px 20px rgba(7, 13, 29, 0.28);
+    transition:
+        background 0.25s var(--nav-ease),
+        box-shadow 0.25s var(--nav-ease),
+        border-color 0.25s var(--nav-ease);
+}
+
+.shopsphere-navbar.scrolled {
+    background: linear-gradient(95deg,
+            rgba(7, 13, 29, 0.98) 0%,
+            rgba(15, 23, 42, 0.97) 52%,
+            rgba(23, 37, 84, 0.98) 100%);
+    border-bottom-color: rgba(147, 197, 253, 0.24);
+    box-shadow: 0 12px 32px rgba(2, 6, 23, 0.5);
+}
+
+.navbar-inner {
+    min-height: 68px;
+    padding: 10px 28px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+}
+
+/* Brand Logo */
+.navbar-brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+    background: transparent;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    font-family: inherit;
+    text-align: left;
+    transition: transform 0.2s var(--nav-ease);
+}
+
+.navbar-brand:hover {
+    transform: translateY(-1px);
+}
+
+.navbar-brand-badge {
+    width: 38px;
+    height: 38px;
+    border-radius: 11px;
+    background: linear-gradient(135deg, var(--nav-royal-bright), var(--nav-purple));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 6px 16px rgba(59, 130, 246, 0.42);
+    flex-shrink: 0;
+}
+
+.navbar-brand-text-group {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.15;
+}
+
+.navbar-brand-title {
+    font-size: 20px;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    color: #ffffff;
+}
+
+.navbar-brand-accent {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #93c5fd;
+}
+
+/* Right Action Controls */
+.navbar-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.navbar-desktop-only {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.navbar-admin-link {
+    padding: 8px 14px;
+    border-radius: 10px;
+    border: 1px solid rgba(245, 158, 11, 0.35);
+    background: rgba(245, 158, 11, 0.14);
+    color: #fde68a;
+    font-size: 13.5px;
+    font-weight: 600;
+    font-family: inherit;
+    cursor: pointer;
+    transition: all 0.22s var(--nav-ease);
+}
+
+.navbar-admin-link:hover,
+.navbar-admin-link.active {
+    background: linear-gradient(135deg, rgba(245, 158, 11, 0.3), rgba(124, 58, 237, 0.32));
+    border-color: rgba(251, 191, 36, 0.65);
+    color: #ffffff;
+}
+
+.navbar-profile-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 5px 13px 5px 6px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.09);
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    color: #f8fafc;
+    font-size: 13.5px;
+    font-weight: 600;
+    font-family: inherit;
+    cursor: pointer;
+    transition: all 0.22s var(--nav-ease);
+}
+
+.navbar-profile-btn:hover,
+.navbar-profile-btn.active {
+    background: rgba(59, 130, 246, 0.24);
+    border-color: rgba(147, 197, 253, 0.6);
+    box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.25);
+}
+
+.navbar-avatar-img,
+.navbar-avatar-fallback {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+.navbar-avatar-img {
+    object-fit: cover;
+    border: 1.5px solid #60a5fa;
+}
+
+.navbar-avatar-fallback {
+    background: linear-gradient(135deg, var(--nav-royal-bright), var(--nav-purple));
+    color: #ffffff;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12.5px;
+    font-weight: 800;
+}
+
+.navbar-cart-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 15px;
+    border-radius: 11px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    background: linear-gradient(135deg, var(--nav-royal) 0%, var(--nav-purple) 100%);
+    color: #ffffff;
+    font-size: 13.5px;
+    font-weight: 700;
+    font-family: inherit;
+    cursor: pointer;
+    box-shadow: 0 6px 16px rgba(37, 99, 235, 0.35);
+    transition: transform 0.2s var(--nav-ease), box-shadow 0.2s var(--nav-ease);
+}
+
+.navbar-cart-btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 8px 20px rgba(124, 58, 237, 0.45);
+}
+
+.navbar-cart-btn.active {
+    box-shadow:
+        0 0 0 2px #fde047,
+        0 10px 24px rgba(124, 58, 237, 0.5);
+}
+
+.navbar-cart-count {
+    min-width: 20px;
+    height: 20px;
+    padding: 0 6px;
+    border-radius: 999px;
+    background: #ffffff;
+    color: #1e3a8a;
+    font-size: 11.5px;
+    font-weight: 800;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.navbar-auth-btn {
+    padding: 8px 15px;
+    border-radius: 11px;
+    border: 1px solid rgba(255, 255, 255, 0.22);
+    background: rgba(255, 255, 255, 0.08);
+    color: #ffffff;
+    font-size: 13.5px;
+    font-weight: 600;
+    font-family: inherit;
+    cursor: pointer;
+    transition: all 0.22s var(--nav-ease);
+}
+
+.navbar-auth-btn:hover,
+.navbar-auth-btn.active {
+    background: rgba(255, 255, 255, 0.18);
+    border-color: #93c5fd;
+}
+
+.navbar-logout-btn {
+    padding: 8px 15px;
+    border-radius: 11px;
+    border: 1px solid rgba(248, 113, 113, 0.4);
+    background: rgba(239, 68, 68, 0.16);
+    color: #fecaca;
+    font-size: 13.5px;
+    font-weight: 600;
+    font-family: inherit;
+    cursor: pointer;
+    transition: background 0.2s var(--nav-ease), color 0.2s var(--nav-ease);
+}
+
+.navbar-logout-btn:hover {
+    background: rgba(239, 68, 68, 0.32);
+    color: #ffffff;
+}
+
+/* Mobile Hamburger Toggle */
+.navbar-mobile-toggle {
+    display: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    background: rgba(255, 255, 255, 0.08);
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    padding: 0;
+}
+
+.hamburger-bars {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    width: 18px;
+}
+
+.hamburger-bars span {
+    display: block;
+    height: 2px;
+    width: 100%;
+    background: #ffffff;
+    border-radius: 2px;
+    transition: transform 0.25s var(--nav-ease), opacity 0.2s var(--nav-ease);
+}
+
+.hamburger-bars.open span:nth-child(1) {
+    transform: translateY(6px) rotate(45deg);
+}
+
+.hamburger-bars.open span:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger-bars.open span:nth-child(3) {
+    transform: translateY(-6px) rotate(-45deg);
+}
+
+/* Responsive Collapsible Drawer */
+.navbar-mobile-drawer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.32s var(--nav-ease);
+    background: rgba(7, 13, 29, 0.98);
+}
+
+.navbar-mobile-drawer.open {
+    max-height: 360px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.navbar-mobile-drawer-inner {
+    padding: 12px 18px 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.navbar-mobile-link {
+    width: 100%;
+    text-align: left;
+    padding: 11px 14px;
+    border-radius: 10px;
+    border: 1px solid transparent;
+    background: rgba(255, 255, 255, 0.04);
+    color: #e2e8f0;
+    font-size: 14px;
+    font-weight: 600;
+    font-family: inherit;
+    cursor: pointer;
+    transition: background 0.2s var(--nav-ease);
+}
+
+.navbar-mobile-link:hover,
+.navbar-mobile-link.active {
+    background: rgba(59, 130, 246, 0.24);
+    border-color: rgba(96, 165, 250, 0.45);
+    color: #ffffff;
+}
+
+.navbar-mobile-admin {
+    color: #fde68a;
+    background: rgba(245, 158, 11, 0.14);
+}
+
+.navbar-mobile-logout {
+    color: #fecaca;
+    background: rgba(239, 68, 68, 0.16);
+    border-color: rgba(248, 113, 113, 0.35);
+}
+
+/* Responsive Breakpoints */
+@media (max-width: 768px) {
+    .navbar-inner {
+        padding: 10px 16px;
+    }
+
+    .navbar-desktop-only,
+    .navbar-desktop-logout {
+        display: none;
+    }
+
+    .navbar-mobile-toggle {
+        display: inline-flex;
+    }
+}
+
+@media (max-width: 520px) {
+
+    .navbar-brand-accent,
+    .navbar-user-name,
+    .navbar-cart-label {
+        display: none;
+    }
+
+    .navbar-profile-btn {
+        padding: 4px;
+    }
+
+    .navbar-cart-btn {
+        padding: 8px 11px;
+        gap: 6px;
+    }
+}
+/* Brand Logo Container */
+.navbar-brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    height: 46px;
+    text-decoration: none;
+    background: transparent;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    font-family: inherit;
+    text-align: left;
+    flex-shrink: 0;
+    transition: transform 0.2s var(--nav-ease);
+}
+
+.navbar-brand:hover {
+    transform: translateY(-1px);
+}
+
+/* Pill-shaped white badge sized cleanly to the navbar's 46px inner height */
+.navbar-brand-badge {
+    height: 44px;
+    width: auto;
+    min-width: 72px;
+    padding: 3px 10px;
+    border-radius: 10px;
+    background: #ffffff;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    box-shadow: 0 4px 14px rgba(15, 23, 42, 0.35);
+    border: 1px solid rgba(255, 255, 255, 0.85);
+    flex-shrink: 0;
+}
+
+/* Preserves exact aspect ratio with zero stretching or cropping */
+.navbar-brand-logo-img {
+    height: 100%;
+    width: auto;
+    max-width: 110px;
+    object-fit: contain;
+    display: block;
+    image-rendering: -webkit-optimize-contrast;
+}
+
+.navbar-brand-text-group {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    line-height: 1.15;
+}
+
+.navbar-brand-title {
+    font-size: 20px;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    color: #ffffff;
+}
+
+.navbar-brand-accent {
+    font-size: 10.5px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #93c5fd;
+}
+
+/* Responsive scaling on small screens */
+@media (max-width: 520px) {
+    .navbar-brand {
+        height: 40px;
+        gap: 8px;
+    }
+
+    .navbar-brand-badge {
+        height: 38px;
+        min-width: 62px;
+        padding: 2px 8px;
+    }
+
+    .navbar-brand-title {
+        font-size: 17px;
+    }
+
+    .navbar-brand-accent {
+        display: none;
+    }
+}
+/* Square emblem badge that crops out the outer whitespace of globemart-logo.jpg */
+.navbar-brand-badge {
+  width: 48px;
+  height: 48px;
+  padding: 0;
+  border-radius: 12px;
+  background: #f4f4f2;
+  border: 1.5px solid rgba(255, 255, 255, 0.9);
+  box-shadow: 0 4px 14px rgba(2, 6, 23, 0.38);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+/* Zooms cleanly into the center globe-cart icon (hiding empty outer margins & tiny subtext) */
+.navbar-brand-logo-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 34%;
+  transform: scale(2.15);
+  display: block;
+}
+/* Brand Logo Container */
+.navbar-brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    margin: 0;
+    padding: 0;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    font-family: inherit;
+    text-align: left;
+    flex-shrink: 0;
+    transition: transform 0.2s var(--nav-ease);
+}
+
+.navbar-brand:hover {
+    transform: translateY(-1px);
+}
+
+/* Proportional Badge Container */
+.navbar-brand-badge {
+    height: 44px;
+    width: auto;
+    padding: 2px 6px;
+    border-radius: 10px;
+    background: #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.85);
+    box-shadow: 0 4px 14px rgba(2, 6, 23, 0.35);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+/* Exact Proportional Logo Sizing Without Distortion */
+.navbar-brand-logo-img {
+    height: 40px;
+    width: auto;
+    max-width: 140px;
+    object-fit: contain;
+    display: block;
+}
+/* Brand Logo Container */
+.navbar-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: transform 0.2s var(--nav-ease);
+}
+
+.navbar-brand:hover {
+  transform: translateY(-1px);
+}
+
+/* Full Glossy Globe Mart Logo (16:9 proportional fit, zero distortion) */
+.navbar-logo-full {
+  height: 54px;
+  width: auto;
+  max-width: 170px;
+  object-fit: contain;
+  border-radius: 10px;
+  border: 1px solid rgba(56, 189, 248, 0.28);
+  box-shadow: 0 4px 14px rgba(2, 6, 23, 0.45);
+  display: block;
+}
+
+.navbar-admin-console-tag {
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #fde68a;
+  background: rgba(245, 158, 11, 0.16);
+  border: 1px solid rgba(245, 158, 11, 0.4);
+  padding: 4px 8px;
+  border-radius: 6px;
+}
+
+/* Responsive Logo Sizing on Mobile */
+@media (max-width: 520px) {
+  .navbar-logo-full {
+    height: 44px;
+    max-width: 135px;
+  }
+
+  .navbar-admin-console-tag {
+    display: none;
+  }
+}
